@@ -97,8 +97,10 @@ async function main() {
   console.log('Created sample tasks')
 
   // Create sample invoice
-  const invoice = await prisma.invoice.create({
-    data: {
+  const invoice = await prisma.invoice.upsert({
+    where: { number: 'INV-2024-001' },
+    update: {},
+    create: {
       number: 'INV-2024-001',
       contactId: contact1.id,
       userId: admin.id,
